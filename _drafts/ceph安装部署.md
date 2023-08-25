@@ -2,10 +2,11 @@
 title: ceph安装部署
 date: 2022-10-15 10:32:34
 tags:
+categories:
+  - ssh
+description:
+  - 安装部署ceph
 ---
-
-安装部署ceph
-<!-- more -->
 
 ### 所有节点创建无密码的root访问权限的用户
 ``` bash
@@ -78,12 +79,14 @@ chmod 600 ~/.ssh/config
 ```
 
 ### 修改hostname方便识别
+
 ``` bash
 hostnamectl set-hostname HOST_NAME
 ```
 
 
 ### 安装部署工具
+
 ``` bash
 sudo apt install -y cephadm
 ```
@@ -98,6 +101,7 @@ chmod +x cephadm
 ```
 
 ### 添加清华源
+
 ``` bash
 wget -q -O- 'https://download.ceph.com/keys/release.asc' | sudo apt-key add -
 sudo apt-add-repository 'deb https://mirrors.tuna.tsinghua.edu.cn/ceph/debian-octopus/ buster main'
@@ -106,8 +110,7 @@ sudo apt update
 
 
 ### 添加存储库的命令软件
+
 ```
 sudo apt install software-properties-common
 ```
-
-

@@ -7,11 +7,9 @@ tags:
   - 博客
 categories:
   - 博客搭建
+description:
+  - 使用halo从零开始搭建个人网站
 ---
-
-从零开始搭建halo个人网站
-
-<!-- more -->
 
 ``` bash
 sudo apt-get install default-jdk -y
@@ -25,7 +23,6 @@ java -version
 curl -L https://github.com/halo-dev/halo/releases/download/v1.5.3/halo-1.5.3.jar --output halo.jar
 ```
 
-
 ``` bash
 nohup java -jar halo.jar &
 ```
@@ -34,6 +31,7 @@ nohup java -jar halo.jar &
 
 Nginx
 ### nginx安装
+
 ``` bash
 # 安装依赖
 sudo apt-get install libpcre3 libpcre3-dev -y
@@ -55,6 +53,7 @@ sudo /usr/local/nginx/sbin/nginx -s reload
 ```
 
 server 前添加
+
 ``` conf
     upstream blog {
         server 127.0.0.1:8090;
@@ -62,6 +61,7 @@ server 前添加
 ```
 
 替换location大括号里的内容
+
 ``` conf
             proxy_pass http://blog;
             proxy_set_header HOST $host;
@@ -72,8 +72,8 @@ server 前添加
 
 
 ### 添加备案信息
+
 `http://localhost:8090/admin` -> 系统 -> 博客设置 -> 基本设置 -> 页脚信息
 ``` conf
 <a href="http://beian.miit.gov.cn/"  style="color:#f72b07" target="_blank">京 ICP 备 2022007624 号 - 1</a>
 ```
-

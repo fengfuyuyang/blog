@@ -7,14 +7,14 @@ tags:
 categories:
   - 博客搭建
   - hexo
+description:
+  - 使用hexo博客框架搭建个人博客
 ---
 
-从零开始搭集hexo博客框架
+## 环境准备
 
-<!-- more -->
-
-## 安装Nodejs
 ### 检查Nodejs是否安装
+
 ``` bash
 node -v
 npm -v
@@ -69,24 +69,29 @@ source ~/.profile
 ### 若nmp访问较慢，可更换阿里源
 
 更换npm安装源
+
 ``` bash
 npm config set registry https://registry.npmmirror.com
 ```
 
 若想还原官方源执行以下命令
+
 ``` bash
 npm config set registry https://registry.npmjs.org
 ```
 
 ## hexo博客部署
+
 ### 安装hexo框架
 
 安装hexo框架
+
 ``` bash
 npm install -g hexo-cli
 ```
 
 查看hexo版本，验证安装
+
 ``` bash
 hexo -v
 ```
@@ -94,6 +99,7 @@ hexo -v
 ### 初始化博客
 
 生成博客根目录blog(目录名可任意取), 并初始化
+
 ``` bash
 hexo init blog
 ```
@@ -103,35 +109,131 @@ hexo init blog
 cd blog
 ```
 
-{% note waring %}
+{% note warning %}
 ### 注意
 以下操作均在博客根目录下进行
 {% endnote %}
+
 ### hexo 基本使用
 
 创建新的文章，会给出文章的路径
+
 ``` bash
-hexo n "我的第一篇文章"
+hexo new "我的第一篇文章"
 ```
 
 生成博客所需的静态文件
+
 ``` bash
-hexo g
+hexo generate
 ```
 
 清理生成的文件和缓存
+
 ``` bash
 hexo clean
 ```
 
 部署网站，需要有自己的网站地址，下面会有使用github仓库作为域名部署
+
 ``` bash
-hexo d
+hexo deploy
 ```
 
 启动博客服务，默认地址[http://localhost:4000/](http://localhost:4000/),可在浏览器打开，查看博客内容
+
 ``` bash
-hexo s
+hexo server
+```
+
+为避免文章未写完就被发布,可以生成草稿文章
+
+``` bash
+hexo new draft "草稿"
+```
+
+通过添加 `--draft` 命令来预览草稿
+
+``` bash
+hexo server --draft
+```
+
+写完后再发布
+
+``` bash
+hexo publish "草稿"
+```
+
+### 启用tags与categories
+
+{% tabs menu, 1 %}
+<!-- tab 启用tag -->
+博客根目录执行以下命令
+
+``` bash
+hexo new page "tags"
+```
+
+修改`source/tags/index.md`文件
+添加`type`和`layout`
+
+```
+---
+title: tags
+date: 2023-05-10 11:32:36
+type: tags
+layout: "tags"
+---
+```
+
+<!-- endtab -->
+
+<!-- tab 启用categories -->
+
+博客根目录执行以下命令
+
+``` bash
+hexo new page "categories"
+```
+
+修改`source/categories/index.md`文件
+添加`type`和`layout`
+
+```
+---
+title: categories
+date: 2023-05-10 11:32:36
+type: categories
+layout: "categories"
+---
+```
+
+<!-- endtab -->
+{% endtabs %}
+
+### 修改默认模板
+
+草稿文章模板文件: scaffolds/draft.md 修改为
+
+``` md
+---
+title: {{ title }}
+tags:
+categories:
+description:
+---
+```
+
+正式文章模板文件: scaffolds/post.md 修改为
+
+``` md
+---
+title: {{ title }}
+date: {{ date }}
+tags:
+categories:
+description:
+---
 ```
 
 ### 使用github仓库部署博客
@@ -139,11 +241,13 @@ hexo s
 #### 检查git是否安装
 
 检查git版本，验证是否安装git
+
 ``` bash
 git --version
 ```
 
 若未安装，先安装git
+
 ``` bash
 sudo apt install git
 ```
@@ -163,6 +267,7 @@ sudo apt install git
 #### 配置_config.yml
 
 修改前
+
 ``` yml
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -171,6 +276,7 @@ deploy:
 ```
 
 添加github仓库地址，修改后内容如下
+
 ``` yml
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -183,11 +289,13 @@ deploy:
 #### 安装git插件和hexo使用
 
 安装插件, 注意插件只对当前博客目录生效，若另外又建了新的blog，需要重新安装插件
+
 ``` bash
 npm install --save hexo-deployer-git
 ```
 
 部署到git
+
 ``` bash
 hexo clean && hexo g && hexo d
 ```
@@ -197,15 +305,21 @@ hexo clean && hexo g && hexo d
 hexo有很多主题供选择,博主使用的是[next主题](https://theme-next.js.org/),可参考[hexo-theme-next主题配置](https://fengfuyuyang.github.io/2022/07/02/hexo-theme-next%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/#more)进行设置
 
 ### 更换更好的markdown渲染器
+
 1. 卸载hexo 默认渲染器
+
 ``` bash
 npm un hexo-renderer-marked --save
 ```
-1. 安装[hexo-renderer-markdown-it](https://github.com/hexojs/hexo-renderer-markdown-it)
+
+2. 安装[hexo-renderer-markdown-it](https://github.com/hexojs/hexo-renderer-markdown-it)
+
 ``` bash
 npm i hexo-renderer-markdown-it --save
 ```
-1. 博客配置文件添加以下内容
+
+3. 博客配置文件添加以下内容
+
 ``` yml
 markdown:
   preset: 'default'
@@ -267,13 +381,15 @@ hexo-renderer-markdown-it自带一些插件,可根据自身需求选择启用哪
 [^1]: 脚注内容
 
 ### 使用4everland部署
-github pages访问很慢，可使用4everland部署hexo
+
+国内 github pages 访问很慢，可使用 4everland 部署 hexo 加速访问
+
 1. 浏览器访问[4everland](https://dashboard.4everland.org?invite=91API3WK),无需注册,点击`Continue with GitHub`使用github登录
 2. 点击左上角`Hosting` -> `Projects` -> `New Project`
 3. 赋权访问github仓库,
 4. 选择hexo的存储库,点击该存储库旁的`Import`
 5. 选择`Hosting Platform`为IPFS
-6. 修改`Basic Configuration`下`Project Name`(可任起,会是部署后的网址中的一部分)
+6. 修改`Basic Configuration`下`Project Name`(可任意起名,会是部署后的网址中的一部分)
 7. 修改`Build Configuration`下`Framework Preset`为Other
 8. 点击底部`Deploy`按钮,等待部署完成
-9. 访问博客,地址为https://设置的ProjectName.4everland.app
+9. 访问博客,地址为https://<设置的ProjectName>.4everland.app

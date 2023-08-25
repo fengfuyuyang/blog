@@ -2,26 +2,29 @@
 title: hexo-theme-next主题配置
 date: 2022-07-02 23:26:41
 tags:
-  - next
   - 主题
-  - hexo
+  - hexo next
 categories:
   - hexo
+description:
+  - hexo-theme-next 主题美化
 ---
 
-hexo博客使用[next主题](https://theme-next.js.org/)
-
-<!-- more -->
-
 ## 安装
+
+[next主题官网网站](https://theme-next.js.org/)
+
 ### 下载主题
+
 ``` bash
 git clone https://github.com/next-theme/hexo-theme-next themes/next
 ```
 
 ### 启用主题
+
 修改博客配置文件[^1],启用next主题
 [^1]: 博客根目录下:_config.yml
+
 ``` yml
 theme: next
 ```
@@ -29,8 +32,10 @@ theme: next
 ## next主题配置
 
 ### 更换主题风格
+
 next提供4种主题风格，可根据个人喜好选择，修改主题配置文件[^2]
 [^2]: next主题目录下:themes/next/_config.yml
+
 ``` yml
 # Schemes
 scheme: Muse
@@ -40,6 +45,7 @@ scheme: Muse
 ```
 
 ### 开启代码块复制按钮
+
 修改主题配置文件
 有default，flat，mac三种代码块复制风格供选择
 ``` yml
@@ -51,29 +57,37 @@ scheme: Muse
 ```
 
 ### 开启浏览进度
+
 修改主题配置文件
 1. 返回顶部按钮显示百分比
+
 ``` yml
   # Scroll percent label in b2t button.
   scrollpercent: true
 ```
+
 2. 顶部显示进度条
+
 ``` yml
 reading_progress:
   enable: true
 ```
 
 ### 开启书签
+
 会保留浏览进度
 修改主题配置文件
+
 ``` yml
 bookmark:
   enable: true
 ```
 
 ### 开启右上角github banner
+
 修改主题配置文件
 可添加标语`title`
+
 ``` yml
 github_banner:
   enable: true
@@ -81,30 +95,18 @@ github_banner:
   title: Follow me on GitHub
 ```
 
-### 显示浏览进度
-修改主题配置文件
-1. 返回按钮
-``` yml
-  # Scroll percent label in b2t button.
-  scrollpercent: true
-```
-
-2. 顶部进度条
-``` yml
-reading_progress:
-  enable: true
-```
-
-
 ### 去掉底部`Powered by Hexo & NexT`
 修改主题配置文件
+
 ``` yml
 # Powered by Hexo & NexT
 powered: false
 ```
 
 ### 启用菜单
+
 修改主题配置文件
+
 ``` yml
 menu:
   home: / || fa fa-home
@@ -116,41 +118,6 @@ menu:
   #sitemap: /sitemap.xml || fa fa-sitemap
   #commonweal: /404/ || fa fa-heartbeat
 ```
-{% tabs menu, 1 %}
-<!-- tab 启用tag -->
-博客根目录执行以下命令
-``` bash
-hexo new page "tags"
-```
-修改`source/tags/index.md`文件
-添加`type`和`layout`
-```
----
-title: tags
-date: 2023-05-10 11:32:36
-type: tags
-layout: "tags"
----
-```
-<!-- endtab -->
-
-<!-- tab 启用categories -->
-博客根目录执行以下命令
-``` bash
-hexo new page "categories"
-```
-修改`source/categories/index.md`文件
-添加`type`和`layout`
-```
----
-title: categories
-date: 2023-05-10 11:32:36
-type: categories
-layout: "categories"
----
-```
-<!-- endtab -->
-{% endtabs %}
 
 #### 添加社交按钮
 修改主题配置文件
@@ -194,8 +161,10 @@ creative_commons:
 ## next主题美化
 
 ### 设置头像
+
 1. 上传头像到`themes/next/source/images`目录下
 2. 修改主题配置文件文件,替换url后内容为头像路径
+
 ``` yml
 # Sidebar Avatar
 avatar:
@@ -208,12 +177,15 @@ avatar:
 ```
 
 ### 启用本地搜索
+
 1. 安装[hexo-generator-searchdb](https://github.com/next-theme/hexo-generator-searchdb)插件
+
 ``` bash
 npm install hexo-generator-searchdb
 ```
 
 2. 博客配置文件，添加以下内容
+
 ``` yml
 search:
   path: search.xml
@@ -223,20 +195,25 @@ search:
 ```
 
 3. 修改主题配置文件
+
 ``` yml
 local_search:
   enable: true
 ```
 
 ### 启用文章字数统计及阅读时常功能
+
 安装[hexo-word-counter](https://github.com/next-theme/hexo-word-counter)插件
 ``` bash
 npm install hexo-word-counter
 ```
 
 ### 主题界面设置
+
 #### 添加背景图
+
 1. 创建配置目录,博客根目录下执行
+
 ``` bash
 mkdir -p source/_data
 ```
@@ -244,6 +221,7 @@ mkdir -p source/_data
 2. 上传背景图片，如`background.jpg`到`themes/next/source/images`目录下
 
 3. _data目录下创建文件`styles.styl`，添加以下内容
+
 ``` css
 //全局布局美化代码
 
@@ -271,12 +249,15 @@ body {
 ```
 
 4. 修改主题配置文件，去掉注释
+
 ``` yml
 style: source/_data/styles.styl
 ```
 
 #### 设置组件圆角
+
 1. _data目录下创建文件`variables.styl`，添加以下内容
+
 ``` css
 // 圆角设置
 $border-radius-inner     = 30px 30px 30px 30px;
@@ -284,13 +265,16 @@ $border-radius           = 30px;
 ```
 
 2. 修改主题配置文件，去掉注释
+
 ``` yml
 variable: source/_data/variables.styl
 ```
 
 ### 添加看板娘
+
 使用[ive2d-widget]https://github.com/stevenjoezhang/live2d-widget
 #### 最简单的
+
 1. _data目录下创建文件`head.njk`，添加以下内容
 ```
 <script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
@@ -308,3 +292,18 @@ cd themes/next/source/
 ``` bash
 git clone https://github.com/stevenjoezhang/live2d-widget.git
 ```
+
+### 添加valine评论系统
+
+#### 准备
+
+注册[leancloud](https://console.leancloud.cn/),创建应用
+
+1. 新版hexo移除了Valine，需要自行安装
+
+``` bash
+npm install next-theme/hexo-next-valine
+```
+
+2. 修改 node_modules/hexo-next-valine/default.yaml 中的配置
+
