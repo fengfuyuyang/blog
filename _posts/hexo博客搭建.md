@@ -282,8 +282,26 @@ deploy:
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: git@github.com:fengfuyuyang/fengfuyuyang.github.io.git
+  repo: git@github.com:username/repository_name.git
   branch: master
+```
+
+若想同时部署到不同仓库,则格式如下:
+``` yml
+# Deployment
+## Docs: https://hexo.io/docs/one-command-deployment
+deploy:
+  - type: git
+    repo: git@github.com:username/repository_name1.git
+    branch: master
+  - type: git
+    repo: git@github.com:username/repository_name2.git
+    branch: master
+```
+
+若想部署到云服务器上,repo格式如下:
+``` yml
+repo: username@ip:/path/to/blog
 ```
 
 #### 安装git插件和hexo使用
@@ -379,6 +397,15 @@ hexo-renderer-markdown-it自带一些插件,可根据自身需求选择启用哪
 
 *[HTML]: 超文本标记语言.
 [^1]: 脚注内容
+
+### 添加 valine 评价系统
+
+``` bash
+npm install next-theme/hexo-next-valine
+```
+
+修改 node_modules/hexo-next-valine/default.yaml
+
 
 ### 使用4everland部署
 
