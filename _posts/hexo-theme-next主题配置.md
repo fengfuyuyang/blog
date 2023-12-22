@@ -158,6 +158,28 @@ creative_commons:
   post: true
 ```
 
+### 开启文本转流程图功能
+
+修改主题配置文件
+``` yml
+# Mermaid tag
+mermaid:
+  enable: true
+  # Available themes: default | dark | forest | neutral
+  theme:
+    light: default
+    dark: dark
+```
+
+修改博客配置文件
+``` yml
+highlight:
+  exclude_languages:
+    - mermaid
+```
+
+vscode可以安装 [Markdown Preview Mermaid Support](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid) 插件预览效果
+
 ## next主题美化
 
 ### 设置头像
