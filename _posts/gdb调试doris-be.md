@@ -83,6 +83,8 @@ BUILD_TYPE=Debug sh build.sh
 目的：避免因为gdb调试中因超过心跳时间限制导致超时，进而SQL执行报错而终止
 
 ``` conf
+bdbje_heartbeat_timeout_second = 600
+remote_fragment_exec_timeout_ms = 600000
 max_backend_heartbeat_failure_tolerance_count = 100
 ```
 
